@@ -1,0 +1,281 @@
+﻿@charset "UTF-8";
+
+// Fonts
+// @import "partials/fonts";
+
+// Variables and mixins
+@import "partials/variables";
+@import "partials/mixins";
+
+// Partials
+@import "partials/normalize";
+@import "partials/base";
+@import "partials/buttons";
+@import "partials/spinner";
+
+// @import "../../../node_modules/cropperjs/dist/cropper.css";
+
+[data-hidden="true"] {
+  display: none !important;
+}
+
+body {
+  // background-color: #eff3f6;
+  // background-color: $light-grey-color3;
+  &.ReactModal__Body--open {
+    min-height: 800px;
+  }
+}
+
+.separator {
+  &-vertical {
+    width: 5px;
+    height: 30px;
+    border-left: 1px solid $border-color;
+  }
+}
+
+.cropper-modal {
+  background-color: #fff;
+}
+
+.app-container {
+  display: flex;
+  height: 100vh;
+
+  @media screen and (max-width: 1200px) {
+    // flex-direction: column;
+    .left-container {
+      flex: 3 3;
+    }
+    .right-container {
+      flex: 1 1;
+    }
+  }
+
+  @media screen and (max-width: $mobile-screen-size) {
+    flex-direction: column;
+  }
+}
+
+.left-container {
+  flex: 3;
+  // background: url(../../assets/img/ac.jfif) no-repeat 0 0;
+  // background-size: cover;
+}
+
+.right-container {
+  flex: 2;
+}
+.main-container {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  // background: white;
+  padding: 0 24px 24px 26px;
+
+  input[type="file"] {
+    position: absolute;
+    opacity: 0;
+    overflow: hidden;
+    z-index: -1;
+  }
+
+  .no-logo-support {
+    margin-top: 20px;
+  }
+
+  .border-divider {
+    padding-right: 30px;
+    margin-right: 30px;
+    border-right: 1px solid $border-color;
+  }
+
+  .upload-logo-item {
+    max-width: 800px;
+    padding-top: 20px;
+    flex: 1;
+
+    .text-description-container {
+      width: 80%;
+    }
+  }
+
+  @media screen and (max-width: $vertical-methods-screen-size) {
+    flex-direction: column;
+
+    .border-divider {
+      padding-right: 0px;
+      border-right: 0px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid $border-color;
+    }
+  }
+}
+
+.logo-content-container {
+  display: flex;
+  padding-top: 35px;
+  justify-content: space-between;
+
+  @media screen and (max-width: $mobile-screen-size) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .logo-preview-editor-container {
+    width: 100%;
+    max-width: 450px;
+    padding-left: 20px;
+
+    @media screen and (max-width: $mobile-screen-size) {
+      max-width: none;
+    }
+
+    .logo-preview-button-container {
+      display: flex;
+      justify-content: space-around;
+
+      &.align {
+        // justify-content: space-between;
+        justify-content: space-evenly;
+      }
+    }
+  }
+}
+
+.drag-and-drop-container {
+  .drag-and-drop-mobile-button {
+    height: 0;
+    width: 0;
+    overflow: hidden;
+
+    @media screen and (max-width: $mobile-screen-size) {
+      overflow: initial;
+      min-width: 150px;
+      height: 100%;
+      margin: auto;
+      padding-bottom: 20px;
+      // border-width: 1px;
+    }
+  }
+
+  .drag-and-drop {
+    width: 300px;
+    height: 180px;
+    border: 1px dashed $grey-color2;
+    border-radius: 5px;
+
+    @media screen and (max-width: $mobile-screen-size) {
+      width: 0;
+      height: 0;
+      border-width: 0;
+      overflow: hidden;
+    }
+
+    .content-wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      height: 100%;
+      min-width: 173px;
+      padding: 30px;
+      font-size: 18px;
+
+      .button-browse-label {
+        font-weight: 100%;
+        margin-bottom: 0;
+        font-size: 14px;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.drop-target {
+  position: relative;
+  height: 100%;
+  .drag-overlay {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: grey;
+    pointer-events: none;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: white;
+    border: dashed grey 4px;
+    transition: opacity 0.3s;
+    opacity: 0;
+  }
+  &.dragging {
+    .drag-overlay {
+      opacity: 0.7;
+    }
+  }
+}
+
+.publish-interaction {
+  padding: 20px 5px;
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  .response-container {
+    opacity: 0;
+  }
+
+  .fadeInAndOut {
+    @include animation("fadeInAndOut 4s ease-in-out");
+  }
+
+  // .fadeOutAndIn {
+  //   @include animation('fadeOutAndIn 0 ease-in-out');
+  // }
+
+  @include keyframes(fadeInAndOut) {
+    0% {
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @include keyframes(fadeOutAndIn) {
+    0% {
+      opacity: 1;
+    }
+    10% {
+      opacity: 0;
+    }
+    90% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
+.success {
+  color: $accept-color;
+}
+.error {
+  color: $decline-color;
+}

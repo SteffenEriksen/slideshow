@@ -1,0 +1,61 @@
+// Buttons
+button {
+  background-color: transparent;
+}
+
+.btn {
+  cursor: pointer;
+  border-radius: 25px;
+  border: 1px solid;
+  padding: 6px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 120px;
+  outline: 0;
+
+  &:disabled {
+    cursor: not-allowed;
+    color: $grey-color2;
+    border-color: $grey-color2;
+    background: white;
+  }
+
+  &-primary {
+    color: white;
+    background-color: $dark-blue-color2;
+    border: 1px solid $dark-blue-color2;
+    // background-color: $primary-color;
+    // border: 1px solid $primary-color;
+  }
+  &-default {
+    color: $primary-color;
+    border: 1px solid $primary-color;
+  }
+}
+
+.btn-icon-group {
+  display: flex;
+
+  .btn-icon-group-item {
+    cursor: pointer;
+    background-color: $primary-color;
+    border: 0;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 10px;
+    min-width: 45px;
+
+    &:first-child {
+      border-radius: 25px 0 0 25px;
+    }
+    &:last-child {
+      border-radius: 0 25px 25px 0;
+    }
+    &:not(:last-child) {
+      border-right: 1px solid white;
+    }
+  }
+}

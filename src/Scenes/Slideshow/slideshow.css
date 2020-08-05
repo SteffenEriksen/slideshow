@@ -1,0 +1,180 @@
+body {
+  /* background-color: rgba(222, 189, 212, 0.982); */
+  /* background-color: lightgray; */
+  background-color: #fff;
+
+  /* background: url(../../assets/img/love2.jpg) no-repeat 0 0;
+  background-size: cover; */
+  /* opacity: 0.5; */
+}
+.footer {
+  /* background-color: rgba(240, 181, 223, 0.982); */
+  /* background-color: rgba(240, 172, 221, 0.982); */
+  /* background-color: rgb(232, 215, 215); */
+  /* background-color: lightgray; */
+  background-color: #fff;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+}
+
+.heart-one {
+  background: url(../../assets/img/heart1.svg) no-repeat 0 0;
+  background-size: cover;
+}
+
+.slide-container {
+  width: 70%;
+  margin: auto;
+}
+
+h3 {
+  text-align: center;
+}
+
+.each-slide > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  height: 600px;
+  width: 600px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+
+.each-slide span {
+  padding: 20px;
+  font-size: 20px;
+  background: #efefef;
+  text-align: center;
+  margin-top: 450px;
+}
+
+.each-fade {
+  display: flex;
+}
+
+.each-fade .image-container {
+  width: 75%;
+  overflow: hidden;
+}
+
+.each-fade .image-container img {
+  width: 100%;
+}
+
+.each-fade h2 {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  background: #adceed;
+}
+
+.slideshow-view-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.image-view-wrapper {
+  flex: 9;
+  /* background-color: red; */
+}
+.footer-wrapper {
+  flex: 1;
+}
+
+.image {
+  height: 100%;
+}
+
+.image-rotate {
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+/* On screens that are 992px or less, set the background color to blue */
+@media screen and (max-width: 600px) {
+  /* .image {
+    height: 300px;
+  } */
+  .image-view-wrapper {
+    flex: 6;
+  }
+  .footer-wrapper {
+    flex: 1;
+  }
+}
+
+/* On screens that are 600px or less, set the background color to olive */
+/* @media screen and (max-width: 600px) {
+  .image {
+    height: 300px;
+  }
+} */
+
+.logo-wrapper {
+  /* margin: -50px 0 0 -100px; */
+}
+
+.logo {
+  margin: auto;
+  /* width: 320px;
+  height: 320px; */
+  /* width: 480px;
+  height: 480px; */
+  width: 170px;
+  height: 120px;
+  background: url(../../assets/img/monogram.png) no-repeat 0 0;
+  background-size: cover;
+}
+
+.noti {
+  z-index: 2;
+  position: fixed;
+  /* height: 40px;
+  width: 40px; */
+  border-radius: 50%;
+  /* background-color: red; */
+  color: white;
+  left: 96%;
+  /* top: -20%; */
+  transition: top 0.5s ease-out;
+}
+
+.noti-show {
+  /* display: block; */
+  top: 1%;
+}
+
+.noti-hide {
+  top: -10%;
+}
+
+.noti-text-show {
+  position: fixed;
+  left: 97.1%;
+  top: 2%;
+  transition: top 0.5s ease-out;
+}
+.noti-text-hide {
+  /* display: none; */
+  top: -10%;
+  /* transition: top 0.5s ease-out; */
+}
+
+.noti-content {
+  height: 40px;
+  width: 47px;
+  background: url(../../assets/img/heart.png) no-repeat 0 0;
+  background-size: cover;
+}

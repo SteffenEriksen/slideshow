@@ -1,0 +1,20 @@
+{
+  "short_name": "Bryllupsbilder",
+  "name": "Bryllupsbilder",
+  "icons": [
+    {
+      "src": "rings-64.png",
+      "sizes": "64x64",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "rings-96.png",
+      "sizes": "96x96",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

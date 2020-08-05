@@ -1,0 +1,67 @@
+// Block spinner
+.block-spinner {
+    @include transition(opacity 0.5s ease);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.8);
+    visibility: visible;
+    opacity: 1!important;
+    z-index: 1600;
+    .spinner-container {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 72px;
+        height: 72px;
+        @include transform(translate(-50%, -50%));
+        text-align: center;
+        .content {
+            margin-top: 20px;
+            p {
+                margin: 0;
+            }
+        }
+    }
+    &:target {
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
+@keyframes spinner-circle {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.spinner-circle {
+    position: relative;
+    width: 72px;
+    height: 72px;
+    animation: spinner-circle 1s linear infinite;
+    transform: rotate(-90deg);
+    circle {
+      cx: 36;
+      cy: 36;
+      r: 35;
+      stroke-width: 1.5;
+      fill: none;
+    }
+    .outline {
+      stroke: $light-grey-color;
+    }
+    .indicator {
+      stroke: $primary-color;
+    }
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
