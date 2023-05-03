@@ -1,5 +1,3 @@
-import React from "react";
-
 import "./slideshow.css";
 
 export default function Notification(props) {

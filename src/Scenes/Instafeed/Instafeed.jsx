@@ -1,4 +1,3 @@
-import React from "react";
 import { buildUrl } from 'react-instafeed'
  
 // 🔥️ These are in your code (not this repo)
@@ -18,7 +17,7 @@ const options = {
   }
 
  
-export default function Instagram() {
+export const Instagram = () => {
   const { json, loading, error, abort } = useAbortableFetch(buildUrl(options))
   if (loading) return 'Loading...'
   if (error) return `Error: ${error}`

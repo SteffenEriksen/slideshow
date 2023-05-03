@@ -1,12 +1,10 @@
-import React from "react";
-
 import "./slideshow.css";
 
 const textStyle = {
   color: "black",
   fontFamily: "Optima, sans-serif",
   fontSize: "24px",
-  paddingTop: "5px"
+  paddingTop: "5px",
 };
 
 export default function Footer() {

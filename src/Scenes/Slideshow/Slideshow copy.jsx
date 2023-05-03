@@ -1,8 +1,9 @@
 import React from "react";
-import * as signalR from "@aspnet/signalr";
+import * as signalR from "@microsoft/signalr";
 
 import "./slideshow.css";
 import { getImages } from "../../api/imageApi";
+import { baseUrl } from "../../constants";
 import ImageView from "./ImageView";
 import Footer from "./Footer";
 import Notification from "./Notification";
@@ -17,12 +18,10 @@ export default function Slideshow() {
   const [newlyUpdatedImages, setNewlyUpdatedImages] = React.useState([]);
   const [showNotification, setShowNotification] = React.useState(false);
 
-  const baseUrl = "https://ac-upload-backend.azurewebsites.net";
-
   const hubUrl = `${baseUrl}/imageHub`;
   let connection = new signalR.HubConnectionBuilder().withUrl(hubUrl).build();
 
-  const shuffleArray = array => {
+  const shuffleArray = (array) => {
     for (var i = array.length - 1; i > 0; i--) {
       var j = Math.floor(Math.random() * (i + 1));
       var temp = array[i];
@@ -44,17 +43,17 @@ export default function Slideshow() {
         .start()
         .then(() => {
           console.log("connected to signalR");
-          connection.on("UploadedImage", newImages => {
+          connection.on("UploadedImage", (newImages) => {
             console.log("on uploaded image");
             setLoadNewImage(false);
-            setNewlyUpdatedImages(prevState => [...prevState, ...newImages]);
+            setNewlyUpdatedImages((prevState) => [...prevState, ...newImages]);
             setShowNotification(true);
             setTimeout(() => {
               setShowNotification(false);
             }, 3000);
           });
         })
-        .catch(err => {
+        .catch((err) => {
           console.log("DISCONNECTED ?", err);
         });
     };
@@ -99,7 +98,7 @@ export default function Slideshow() {
         }, timeBetweenPictures);
     } else {
       console.log("====== retrieve BACKEND ======");
-      getImages().then(res => {
+      getImages().then((res) => {
         shuffleArray(res);
         var shuffledList = res;
         var tempImages = shuffledList;
@@ -121,7 +120,7 @@ export default function Slideshow() {
     height: "50px",
     width: "60px",
     position: "fixed",
-    zIndex: "-1"
+    zIndex: "-1",
   };
 
   const Heart = ({ left, top }) => (

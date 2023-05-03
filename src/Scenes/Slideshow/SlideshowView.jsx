@@ -1,5 +1,3 @@
-import React from "react";
-
 import ImageView from "./ImageView";
 import Footer from "./Footer";
 import Notification from "./Notification";
@@ -17,7 +15,7 @@ import "./slideshow.css";
 //   <div className="heart-one" style={{ ...heartStyle, left, top }} />
 // );
 
-export const SlideshowView = props => {
+export const SlideshowView = (props) => {
   const { showNotification, imageUrl } = props;
 
   return (

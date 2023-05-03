@@ -1,7 +1,6 @@
-const axios = require("axios");
+import axios from "axios";
 
-const baseUrl = "https://ac-upload-backend.azurewebsites.net";
-// const baseUrl = "https://localhost:44350";
+import { baseUrl } from "../constants";
 
 const imageApiUrl = `${baseUrl}/api/image`;
 
@@ -19,14 +18,14 @@ function getAuthHeaders(headers) {
 }
 
 export function getImages() {
-  return axios.get(imageApiUrl).then(resp => {
+  return axios.get(imageApiUrl).then((resp) => {
     // console.log(resp.data);
     return resp.data;
   });
 }
 
 export function getImage(number) {
-  return axios.get(`${imageApiUrl}/GetImage?number=${number}`).then(resp => {
+  return axios.get(`${imageApiUrl}/GetImage?number=${number}`).then((resp) => {
     // console.log(resp.data);
     return resp.data;
   });
@@ -37,29 +36,29 @@ export function postImages(data) {
 
   return axios
     .post(imageApiUrl, data, headers)
-    .then(resp => {
+    .then((resp) => {
       // console.log(resp.data);
       return resp.data;
     })
-    .catch(err => console.log(err));
+    .catch((err) => console.log(err));
 }
 
 export function deleteImage(imageUrl) {
   return axios
     .delete(`${imageApiUrl}/?imageUrl=${imageUrl}`)
-    .then(resp => {
+    .then((resp) => {
       return resp.data;
     })
-    .catch(err => console.log(err));
+    .catch((err) => console.log(err));
 }
 
 export function uploadImagesXhr(data) {
-  return new Promise(function(resolve, reject) {
+  return new Promise(function (resolve, reject) {
     let xhr = new XMLHttpRequest();
 
     xhr.open("POST", imageApiUrl);
 
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
       console.log(xhr.status, xhr.readyState);
       if (xhr.readyState === 4 && xhr.status === 200) {
         let result = xhr.responseText;
@@ -71,7 +70,7 @@ export function uploadImagesXhr(data) {
       }
     };
 
-    xhr.upload.addEventListener("progress", pEvent => {
+    xhr.upload.addEventListener("progress", (pEvent) => {
       let progress = pEvent.loaded / pEvent.total;
       console.log(progress);
     });
