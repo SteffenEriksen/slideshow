@@ -9,3 +9,5 @@ export const apiPaths = {
   postImages: imageApiUrl,
   deleteImage: (imageUrl: string) => `${imageApiUrl}/?imageUrl=${imageUrl}`,
 };
+
+export const linkToUploadPage = "https://ac-up.azurewebsites.net";
