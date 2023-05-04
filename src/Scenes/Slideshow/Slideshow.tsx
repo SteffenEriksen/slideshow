@@ -3,8 +3,9 @@ import * as signalR from "@microsoft/signalr";
 
 import "./slideshow.css";
 import { getImages } from "../../api/imageApi";
-import { baseUrl } from "../../constants";
+import { hubUrl } from "../../constants";
 import { SlideshowView } from "./SlideshowView";
+import { shuffleArray } from "../../helpers";
 // import ImageView from "./ImageView";
 // import Footer from "./Footer";
 // import Notification from "./Notification";
@@ -13,23 +14,15 @@ const timeBetweenPictures = 7000;
 let connectedToSignalR = false;
 
 export default function Slideshow() {
-  const [loadNewImage, setLoadNewImage] = React.useState(true);
-  const [imageUrl, setImageUrl] = React.useState("");
-  const [backendImages, setBackendImages] = React.useState([]);
-  const [newlyUpdatedImages, setNewlyUpdatedImages] = React.useState([]);
+  const [loadNewImage, setLoadNewImage] = React.useState<boolean>(true);
+  const [imageUrl, setImageUrl] = React.useState<string>("");
+  const [backendImages, setBackendImages] = React.useState<string[]>([]);
+  const [newlyUpdatedImages, setNewlyUpdatedImages] = React.useState<string[]>(
+    []
+  );
   const [showNotification, setShowNotification] = React.useState(false);
 
-  const hubUrl = `${baseUrl}/imageHub`;
   let connection = new signalR.HubConnectionBuilder().withUrl(hubUrl).build();
-
-  const shuffleArray = (array) => {
-    for (var i = array.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var temp = array[i];
-      array[i] = array[j];
-      array[j] = temp;
-    }
-  };
 
   React.useEffect(() => {
     // console.log("connection", connection);
@@ -39,7 +32,7 @@ export default function Slideshow() {
     console.log("INSIDE");
 
     const startSignalR = () => {
-      connection.methods = [];
+      (connection as any).methods = [];
       connection
         .start()
         .then(() => {
@@ -65,7 +58,7 @@ export default function Slideshow() {
     });
 
     return () => {
-      connection.methods = [];
+      (connection as any).methods = [];
     };
   }, [connection]);
 
@@ -75,7 +68,7 @@ export default function Slideshow() {
     if (newlyUpdatedImages && newlyUpdatedImages.length > 0) {
       console.log("====== newlyUpdatedImages ======");
       var tempNewImages = newlyUpdatedImages;
-      var nextNewImageUrl = tempNewImages.pop();
+      var nextNewImageUrl = tempNewImages.pop() || "";
 
       setLoadNewImage(false);
       setImageUrl(nextNewImageUrl);
@@ -87,7 +80,7 @@ export default function Slideshow() {
     } else if (backendImages && backendImages.length > 0) {
       console.log("====== use BACKEND image ======");
       var tempOldBackendImages = backendImages;
-      var nextOldImageUrl = tempOldBackendImages.pop();
+      var nextOldImageUrl = tempOldBackendImages.pop() || "";
 
       setLoadNewImage(false);
       setImageUrl(nextOldImageUrl);
@@ -99,11 +92,11 @@ export default function Slideshow() {
         }, timeBetweenPictures);
     } else {
       console.log("====== retrieve BACKEND ======");
-      getImages().then((res) => {
+      getImages().then((res: string[]) => {
         shuffleArray(res);
         var shuffledList = res;
         var tempImages = shuffledList;
-        var nextImageUrl = tempImages.pop();
+        var nextImageUrl = tempImages.pop() || "";
 
         setLoadNewImage(false);
         setImageUrl(nextImageUrl);

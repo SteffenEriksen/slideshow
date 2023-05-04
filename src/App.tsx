@@ -1,9 +1,9 @@
 import { BrowserRouter, Route } from "react-router-dom";
 
-import Slideshow from "./Scenes/Slideshow/Slideshow.jsx";
-import Upload from "./Scenes/Upload/Upload.jsx";
-// import Test from "./Scenes/Test/Test.jsx";
-import Display from "./Scenes/Display/Display.jsx";
+import Slideshow from "./Scenes/Slideshow/Slideshow";
+import Upload from "./Scenes/Upload/Upload";
+// import Test from "./Scenes/Test/Test";
+import Display from "./Scenes/Display/Display";
 
 import "./App.css";
 

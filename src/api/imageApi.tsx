@@ -1,10 +1,8 @@
 import axios from "axios";
 
-import { baseUrl } from "../constants";
+import { apiPaths } from "../constants";
 
-const imageApiUrl = `${baseUrl}/api/image`;
-
-function getAuthHeaders(headers) {
+const getAuthHeaders = (headers?: Headers): any => {
   if (headers === undefined) {
     headers = new Headers();
   }
@@ -15,48 +13,48 @@ function getAuthHeaders(headers) {
   // headers.append('Authorization', `Bearer ${sessionInfo.token}`);
 
   return headers;
-}
+};
 
-export function getImages() {
-  return axios.get(imageApiUrl).then((resp) => {
+export const getImages = () => {
+  return axios.get(apiPaths.getImages).then((resp) => {
     // console.log(resp.data);
     return resp.data;
   });
-}
+};
 
-export function getImage(number) {
-  return axios.get(`${imageApiUrl}/GetImage?number=${number}`).then((resp) => {
+export const getImage = (number: number) => {
+  return axios.get(apiPaths.getImage(number)).then((resp) => {
     // console.log(resp.data);
     return resp.data;
   });
-}
+};
 
-export function postImages(data) {
+export const postImages = (data: any) => {
   const headers = getAuthHeaders();
 
   return axios
-    .post(imageApiUrl, data, headers)
+    .post(apiPaths.postImages, data, headers)
     .then((resp) => {
       // console.log(resp.data);
       return resp.data;
     })
     .catch((err) => console.log(err));
-}
+};
 
-export function deleteImage(imageUrl) {
+export const deleteImage = (imageUrl: string) => {
   return axios
-    .delete(`${imageApiUrl}/?imageUrl=${imageUrl}`)
+    .delete(apiPaths.deleteImage(imageUrl))
     .then((resp) => {
       return resp.data;
     })
     .catch((err) => console.log(err));
-}
+};
 
-export function uploadImagesXhr(data) {
+export const uploadImagesXhr = (data: any) => {
   return new Promise(function (resolve, reject) {
     let xhr = new XMLHttpRequest();
 
-    xhr.open("POST", imageApiUrl);
+    xhr.open("POST", apiPaths.postImages);
 
     xhr.onreadystatechange = function () {
       console.log(xhr.status, xhr.readyState);
@@ -77,4 +75,4 @@ export function uploadImagesXhr(data) {
 
     xhr.send(data);
   });
-}
+};
