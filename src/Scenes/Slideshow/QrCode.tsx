@@ -1,5 +1,20 @@
+import { CSSProperties } from "react";
+
+const qrCodeStyle: CSSProperties = {
+  height: "100px",
+  width: "100px",
+  position: "fixed",
+  zIndex: "-1",
+  left: "92%",
+  top: "86%",
+};
+
 export const QrCode = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1023 1023">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 1023 1023"
+    style={qrCodeStyle}
+  >
     <defs>
       <mask id="qrmask">
         <g fill="#ffffff">
