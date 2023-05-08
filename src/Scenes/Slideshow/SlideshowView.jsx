@@ -15,6 +15,8 @@ import "./slideshow.css";
 //   <div className="heart-one" style={{ ...heartStyle, left, top }} />
 // );
 
+// const temp = "https://acslidestorage.blob.core.windows.net/acblob/for.jpg";
+
 export const SlideshowView = (props) => {
   const { showNotification, imageUrl } = props;
 
@@ -28,6 +30,7 @@ export const SlideshowView = (props) => {
       <Heart left="8%" top="60%" />
       <Heart left="3%" top="80%" /> */}
       <ImageView imageUrl={imageUrl} />
+      {/* <ImageView imageUrl={imageUrl || temp} /> */}
       {/* <Heart left="82%" top="20%" />
       <Heart left="77%" top="30%" />
       <Heart left="91%" top="38%" />

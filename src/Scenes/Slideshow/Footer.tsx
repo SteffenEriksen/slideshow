@@ -17,9 +17,11 @@ export const Footer = () => {
       style={{
         display: "flex",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "space-between",
+        padding: "0 40px"
       }}
     >
+      <div />
       <h1 style={textStyle}>
         <i>Anders & Celine 07.07.23</i>
       </h1>

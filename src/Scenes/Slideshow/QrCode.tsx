@@ -1,12 +1,12 @@
 import { CSSProperties } from "react";
 
 const qrCodeStyle: CSSProperties = {
-  height: "100px",
-  width: "100px",
-  position: "fixed",
-  zIndex: "-1",
-  left: "92%",
-  top: "86%",
+  height: "120px",
+  width: "120px",
+  // position: "fixed",
+  // zIndex: "-1",
+  // left: "92%",
+  // top: "86%",
 };
 
 export const QrCode = () => (
