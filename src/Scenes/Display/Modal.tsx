@@ -4,7 +4,13 @@ import "./display.css";
 
 const magicKeyword = "delete";
 
-export default function ConfirmationModal(props) {
+interface Props {
+  imageUrl: string;
+  confirmDelete: (imgUrl: string) => void;
+  onClose: () => void;
+}
+
+export default function ConfirmationModal(props: Props) {
   const [keyword, setKeyword] = React.useState("");
   const [error, setError] = React.useState("");
   const [canSubmit, setCanSubmit] = React.useState(false);
@@ -12,17 +18,12 @@ export default function ConfirmationModal(props) {
   console.log("starting modal");
 
   const onSubmit = () => {
-    // if (keyword === magicKeyword) {
     setKeyword("");
     setError("");
     props.confirmDelete(props.imageUrl);
-    // } else {
-    //   setError("keyword not correct.");
-    //   setTimeout(() => setError(""), 3000);
-    // }
   };
 
-  const onChangeKeyword = e => {
+  const onChangeKeyword = (e: any) => {
     const newKeyword = e.target.value;
     const newKeywordInLower = newKeyword.toLowerCase();
     setKeyword(newKeyword);
@@ -37,12 +38,7 @@ export default function ConfirmationModal(props) {
         </span>
         <h3>Bekreft sletting</h3>
         <div style={{ padding: "20px" }}>
-          <img
-            src={props.imageUrl}
-            alt="img"
-            className="modal-image"
-            // style={{ maxHeight: "200px", maxWidth: "200px" }}
-          />
+          <img src={props.imageUrl} alt="img" className="modal-image" />
         </div>
         <span>Passord for sletting: </span>{" "}
         <input value={keyword} onChange={onChangeKeyword} />

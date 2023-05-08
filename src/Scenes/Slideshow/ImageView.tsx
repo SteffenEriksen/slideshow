@@ -2,17 +2,9 @@ import React from "react";
 
 import "./slideshow.css";
 
-export default React.memo(function ImageView(props) {
+export default React.memo(function ImageView(props: { imageUrl?: string }) {
   return (
-    <div
-      style={{
-        margin: "auto"
-        // minHeight: "100vh",
-        // maxHeight: "100vh",
-        // minWidth: "100vh",
-        // maxWidth: "100vh"
-      }}
-    >
+    <div className="image-view-wrapper">
       {props.imageUrl && (
         <img
           id="myImg"

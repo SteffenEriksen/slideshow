@@ -2,7 +2,10 @@ import React from "react";
 
 import "./display.css";
 
-export default React.memo(function ImageView(props) {
+export default React.memo(function ImageView(props: {
+  imageUrl: string;
+  onDelete: (imageUrl: string) => void;
+}) {
   return (
     <div className="display-item">
       {props.imageUrl && (

@@ -84,6 +84,7 @@ h3 {
 
 .image-view-wrapper {
   flex: 9;
+  max-height: 86vh
   /* background-color: red; */
 }
 .footer-wrapper {
@@ -109,6 +110,7 @@ h3 {
   } */
   .image-view-wrapper {
     flex: 6;
+    max-height: 76vh;
   }
   .footer-wrapper {
     flex: 1;

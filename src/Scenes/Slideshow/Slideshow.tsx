@@ -6,9 +6,6 @@ import { getImages } from "../../api/imageApi";
 import { hubUrl } from "../../constants";
 import { SlideshowView } from "./SlideshowView";
 import { shuffleArray } from "../../helpers";
-// import ImageView from "./ImageView";
-// import Footer from "./Footer";
-// import Notification from "./Notification";
 
 const timeBetweenPictures = 7000;
 let connectedToSignalR = false;
@@ -109,17 +106,6 @@ export default function Slideshow() {
       });
     }
   }, [loadNewImage, newlyUpdatedImages, backendImages]);
-
-  // const heartStyle = {
-  //   height: "50px",
-  //   width: "60px",
-  //   position: "fixed",
-  //   zIndex: "-1",
-  // };
-
-  // const Heart = ({ left, top }) => (
-  //   <div className="heart-one" style={{ ...heartStyle, left, top }} />
-  // );
 
   return (
     <SlideshowView showNotification={showNotification} imageUrl={imageUrl} />

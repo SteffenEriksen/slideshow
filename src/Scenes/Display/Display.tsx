@@ -8,7 +8,7 @@ import ImageView from "./FilteredImageView";
 import ConfirmationModal from "./Modal";
 
 const linkStyle = {
-  textDecoration: "none"
+  textDecoration: "none",
 };
 
 export default function Slideshow() {
@@ -17,12 +17,12 @@ export default function Slideshow() {
   const [confirmDeleteImageUrl, setConfirmDeleteImageUrl] = React.useState("");
 
   React.useEffect(() => {
-    getImages().then(res => {
+    getImages().then((res) => {
       setImages(res);
     });
   }, []);
 
-  const onDelete = imageUrl => {
+  const onDelete = (imageUrl: string) => {
     if (isProcessing) return;
     setIsProcessing(true);
 
@@ -34,10 +34,10 @@ export default function Slideshow() {
     setConfirmDeleteImageUrl("");
   };
 
-  const onConfirmation = imageUrl => {
+  const onConfirmation = (imageUrl: string) => {
     console.log(":: CONFIRMED ::");
 
-    deleteImage(imageUrl).then(res => {
+    deleteImage(imageUrl).then((res) => {
       console.log("res", res);
       setConfirmDeleteImageUrl("");
       setIsProcessing(false);

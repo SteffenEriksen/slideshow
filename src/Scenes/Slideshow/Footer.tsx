@@ -18,13 +18,15 @@ export const Footer = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        padding: "0 40px"
+        padding: "0 40px",
       }}
     >
-      <div />
+      <div style={{ width: "120px" }} />
+
       <h1 style={textStyle}>
         <i>Anders & Celine 07.07.23</i>
       </h1>
+
       <QrCode />
     </div>
   );
