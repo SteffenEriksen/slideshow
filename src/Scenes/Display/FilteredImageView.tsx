@@ -14,7 +14,7 @@ export default React.memo(function ImageView(props: {
             className="fa fa-close close"
             onClick={() => props.onDelete(props.imageUrl)}
           />
-          <a href={props.imageUrl}>
+          <a href={props.imageUrl} download>
             <img
               id="myImg"
               src={props.imageUrl}
