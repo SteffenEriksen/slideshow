@@ -180,3 +180,9 @@ h3 {
   background: url(../../assets/img/heart.png) no-repeat 0 0;
   background-size: cover;
 }
+.qrcode-content {
+  height: 110px;
+  width: 110px;
+  background: url(../../assets/img/qrCode.png) no-repeat 0 0;
+  background-size: cover;
+}

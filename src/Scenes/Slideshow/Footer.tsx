@@ -1,5 +1,4 @@
 import { CSSProperties } from "react";
-import { QrCode } from "./QrCode";
 import "./slideshow.css";
 
 const textStyle: CSSProperties = {
@@ -27,7 +26,7 @@ export const Footer = () => {
         <i>Anders & Celine 07.07.23</i>
       </h1>
 
-      <QrCode />
+      <div className="qrcode-content" />
     </div>
   );
 };
