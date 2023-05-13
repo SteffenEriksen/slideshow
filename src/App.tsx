@@ -1,25 +1,25 @@
 import { BrowserRouter, Route } from "react-router-dom";
 
-import Slideshow from "./Scenes/Slideshow/Slideshow";
 import { Upload } from "./Scenes/Upload/Upload";
-// import Test from "./Scenes/Test/Test";
-import Display from "./Scenes/Display/Display";
+import { Slideshow } from "./Scenes/Slideshow/Slideshow";
+import { Test } from "./Scenes/TestPage/Test";
+import { Display } from "./Scenes/Display/Display";
+import { AppProvider } from "./store/AppContext";
 
 import "./App.css";
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="App">
-        <main>
+    <AppProvider>
+      <BrowserRouter>
+        <div className="App">
           <Route exact path="/" component={Display} />
           <Route path="/slide" component={Slideshow} />
           <Route path="/upload" component={Upload} />
-          {/* <Route path="/test" component={Test} /> */}
-          {/* <Route path="/display" component={Display} /> */}
-        </main>
-      </div>
-    </BrowserRouter>
+          <Route path="/test" component={Test} />
+        </div>
+      </BrowserRouter>
+    </AppProvider>
   );
 }
 

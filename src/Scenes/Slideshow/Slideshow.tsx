@@ -3,14 +3,16 @@ import * as signalR from "@microsoft/signalr";
 
 import "./slideshow.css";
 import { getImages } from "../../api/imageApi";
-import { hubUrl } from "../../constants";
+import { defaultTimeBetweenSlides, hubUrl } from "../../utilities/constants";
 import { SlideshowView } from "./SlideshowView";
-import { shuffleArray } from "../../helpers";
+import { shuffleArray } from "../../utilities/helpers";
+import { AppContext } from "../../store/AppContext";
 
-const timeBetweenPictures = 7000;
 let connectedToSignalR = false;
 
-export default function Slideshow() {
+export const Slideshow = () => {
+  const { appState } = React.useContext(AppContext);
+
   const [loadNewImage, setLoadNewImage] = React.useState<boolean>(true);
   const [imageUrl, setImageUrl] = React.useState<string>("");
   const [backendImages, setBackendImages] = React.useState<string[]>([]);
@@ -19,7 +21,11 @@ export default function Slideshow() {
   );
   const [showNotification, setShowNotification] = React.useState(false);
 
+  const timeBetweenSlides =
+    (appState.timeBetweenSlides || defaultTimeBetweenSlides) * 1000;
   let connection = new signalR.HubConnectionBuilder().withUrl(hubUrl).build();
+
+  console.log("TIME BETWEEN", timeBetweenSlides);
 
   React.useEffect(() => {
     // console.log("connection", connection);
@@ -72,7 +78,7 @@ export default function Slideshow() {
       setNewlyUpdatedImages(tempNewImages);
 
       if (isSlidePage()) {
-        setTimeout(() => setLoadNewImage(true), timeBetweenPictures);
+        setTimeout(() => setLoadNewImage(true), timeBetweenSlides);
       }
     } else if (backendImages && backendImages.length > 0) {
       console.log("====== use BACKEND image ======");
@@ -86,7 +92,7 @@ export default function Slideshow() {
       if (isSlidePage())
         setTimeout(() => {
           setLoadNewImage(true);
-        }, timeBetweenPictures);
+        }, timeBetweenSlides);
     } else {
       console.log("====== retrieve BACKEND ======");
       getImages().then((res: string[]) => {
@@ -102,15 +108,15 @@ export default function Slideshow() {
         if (isSlidePage())
           setTimeout(() => {
             setLoadNewImage(true);
-          }, timeBetweenPictures);
+          }, timeBetweenSlides);
       });
     }
-  }, [loadNewImage, newlyUpdatedImages, backendImages]);
+  }, [loadNewImage, newlyUpdatedImages, backendImages, timeBetweenSlides]);
 
   return (
     <SlideshowView showNotification={showNotification} imageUrl={imageUrl} />
   );
-}
+};
 
 const isSlidePage = () =>
   window.location.href === `${window.location.origin}/slide`;

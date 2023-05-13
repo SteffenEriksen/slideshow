@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { apiPaths } from "../constants";
+import { apiPaths } from "../utilities/constants";
 
 const getAuthHeaders = (headers?: Headers): any => {
   if (headers === undefined) {

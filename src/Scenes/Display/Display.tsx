@@ -1,18 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import TextField from "@mui/material/TextField";
 
 import "./display.css";
 
 import { getImages, deleteImage } from "../../api/imageApi";
 import ImageView from "./FilteredImageView";
 import ConfirmationModal from "./Modal";
-import { downloadURI, downloadURI2, downloadURI3 } from "../../helpers";
+import { AppContext, setTimeBetweenSlides } from "../../store/AppContext";
 
 const linkStyle = {
   textDecoration: "none",
 };
 
-export default function Slideshow() {
+export const Display = () => {
+  const { appState, dispatch } = React.useContext(AppContext);
   const [images, setImages] = React.useState<string[]>([]);
   const [isProcessing, setIsProcessing] = React.useState(false);
   const [confirmDeleteImageUrl, setConfirmDeleteImageUrl] = React.useState("");
@@ -22,33 +24,6 @@ export default function Slideshow() {
       setImages(res);
     });
   }, []);
-
-  const downloadAll = () => {
-    const img1 = images[0];
-    const name = img1.split("/").pop()?.split("__")[0] || "";
-    console.log("name", name);
-    downloadURI(img1, name);
-  };
-
-  const downloadAll2 = () => {
-    const img1 = images[0];
-    const name = img1.split("/").pop()?.split("__")[0] || "";
-    console.log("name", name);
-    downloadURI2(img1, name);
-  };
-
-  const downloadAll3 = () => {
-    const img1 = images[0];
-    const name = img1.split("/").pop()?.split("__")[0] || "";
-    console.log("name", name);
-    downloadURI3(img1, name);
-
-    // images.map((imageUrl, idx) => {
-    //   const name = imageUrl.split("/").pop()?.split("__")[0] || `${idx}`;
-    //   console.log("name", name);
-    //   downloadURI3(imageUrl, name);
-    // });
-  };
 
   const onDelete = (imageUrl: string) => {
     if (isProcessing) return;
@@ -85,17 +60,19 @@ export default function Slideshow() {
         Upload{" "}
       </Link>
       <h1>Display</h1>
-      <div>
-        <button style={{ cursor: "pointer" }} onClick={downloadAll}>
-          Download all
-        </button>
-        <button style={{ cursor: "pointer" }} onClick={downloadAll2}>
-          Download all2
-        </button>
-        <button style={{ cursor: "pointer" }} onClick={downloadAll3}>
-          Download all3
-        </button>
+
+      <div style={{ margin: "20px 0" }}>
+        <TextField
+          id="outlined-basic"
+          label="Time between slides"
+          variant="outlined"
+          onChange={(e) =>
+            dispatch(setTimeBetweenSlides(e.currentTarget.value))
+          }
+          value={appState.timeBetweenSlides}
+        />
       </div>
+
       {images && (
         <div className="display-container">
           {images.map((imageUrl, idx) => (
@@ -112,4 +89,4 @@ export default function Slideshow() {
       )}
     </>
   );
-}
+};

@@ -11,3 +11,5 @@ export const apiPaths = {
 };
 
 export const linkToUploadPage = "https://ac-up.azurewebsites.net";
+
+export const defaultTimeBetweenSlides = 7;
