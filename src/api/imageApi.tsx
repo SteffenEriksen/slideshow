@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import { apiPaths } from "../utilities/constants";
+import { downloadURI } from "../utilities/helpers";
 
 const getAuthHeaders = (headers?: Headers): any => {
   if (headers === undefined) {
@@ -27,6 +28,25 @@ export const getImage = (number: number) => {
     // console.log(resp.data);
     return resp.data;
   });
+};
+
+export const getAllImages = () => {
+  return axios
+    .get(apiPaths.GetAllImages, { responseType: "stream" })
+    .then((resp) => {
+      console.log(resp.data);
+      const blob = new Blob([resp.data], {
+        type: "application/zip",
+      });
+      const url = window.URL.createObjectURL(blob);
+
+      downloadURI(url, "images.zip");
+      // const link = document.createElement("a");
+      // link.href = url;
+      // link.setAttribute("download", "file.zip");
+      // document.body.appendChild(link);
+      // link.click();
+    });
 };
 
 export const postImages = (data: any) => {

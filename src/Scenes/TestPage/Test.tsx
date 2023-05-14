@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { getImages } from "../../api/imageApi";
+import { getAllImages, getImages } from "../../api/imageApi";
 import {
   downloadURI,
   downloadURI2,
@@ -69,6 +69,9 @@ export const Test = () => {
         </button>
         <button style={{ cursor: "pointer" }} onClick={downloadAll3}>
           Download all3
+        </button>
+        <button style={{ cursor: "pointer" }} onClick={getAllImages}>
+          Download all API
         </button>
       </div>
     </>
