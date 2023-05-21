@@ -8,8 +8,8 @@ export const hubUrl = `${apiUrl}/imageHub`;
 
 export const apiPaths = {
   getImages: imageApiUrl,
-  getImage: (number: number) => `${imageApiUrl}/GetImage?number=${number}`,
   GetAllImages: `${imageApiUrl}/GetAllImages`,
+  GetZippedImages: `${imageApiUrl}/GetZippedImages`,
   postImages: imageApiUrl,
   deleteImage: (imageUrl: string) => `${imageApiUrl}/?imageUrl=${imageUrl}`,
 };

@@ -23,16 +23,28 @@ export const getImages = () => {
   });
 };
 
-export const getImage = (number: number) => {
-  return axios.get(apiPaths.getImage(number)).then((resp) => {
-    // console.log(resp.data);
-    return resp.data;
-  });
-};
-
 export const getAllImages = () => {
   return axios
     .get(apiPaths.GetAllImages, { responseType: "stream" })
+    .then((resp) => {
+      console.log(resp.data);
+      const blob = new Blob([resp.data], {
+        type: "application/zip",
+      });
+      const url = window.URL.createObjectURL(blob);
+
+      downloadURI(url, "images.zip");
+      // const link = document.createElement("a");
+      // link.href = url;
+      // link.setAttribute("download", "file.zip");
+      // document.body.appendChild(link);
+      // link.click();
+    });
+};
+
+export const getZippedImages = () => {
+  return axios
+    .get(apiPaths.GetZippedImages, { responseType: "stream" })
     .then((resp) => {
       console.log(resp.data);
       const blob = new Blob([resp.data], {
