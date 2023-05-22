@@ -2,7 +2,6 @@ import { BrowserRouter, Route } from "react-router-dom";
 
 import { Upload } from "./Scenes/Upload/Upload";
 import { Slideshow } from "./Scenes/Slideshow/Slideshow";
-import { Test } from "./Scenes/TestPage/Test";
 import { Display } from "./Scenes/Display/Display";
 import { AppProvider } from "./store/AppContext";
 
@@ -16,7 +15,6 @@ function App() {
           <Route exact path="/" component={Display} />
           <Route path="/slide" component={Slideshow} />
           <Route path="/upload" component={Upload} />
-          <Route path="/test" component={Test} />
         </div>
       </BrowserRouter>
     </AppProvider>

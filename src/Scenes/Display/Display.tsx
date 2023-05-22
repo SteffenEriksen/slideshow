@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 
 import "./display.css";
 
-import { getImages, deleteImage } from "../../api/imageApi";
+import { getImages, deleteImage, getZippedImages } from "../../api/imageApi";
 import ImageView from "./FilteredImageView";
 import ConfirmationModal from "./Modal";
 import { AppContext, setTimeBetweenSlides } from "../../store/AppContext";
@@ -61,7 +62,13 @@ export const Display = () => {
       </Link>
       <h1>Display</h1>
 
-      <div style={{ margin: "20px 0" }}>
+      <div
+        style={{
+          margin: "30px 0",
+          display: "flex",
+          justifyContent: "space-evenly",
+        }}
+      >
         <TextField
           id="outlined-basic"
           label="Time between slides"
@@ -71,6 +78,10 @@ export const Display = () => {
           }
           value={appState.timeBetweenSlides}
         />
+
+        <Button variant="contained" onClick={getZippedImages}>
+          Download all images
+        </Button>
       </div>
 
       {images && (

@@ -1,7 +1,16 @@
 import axios from "axios";
 
-import { apiPaths } from "../utilities/constants";
 import { downloadURI } from "../utilities/helpers";
+import { imageApiUrl } from "../utilities/constants";
+
+const apiPaths = {
+  getImages: imageApiUrl,
+  GetAllImages: `${imageApiUrl}/GetAllImages`,
+  GetZippedImages: `${imageApiUrl}/GetZippedImages`,
+  GetZippedImagesExtra: `${imageApiUrl}/GetZippedImagesExtra`,
+  postImages: imageApiUrl,
+  deleteImage: (imageUrl: string) => `${imageApiUrl}/?imageUrl=${imageUrl}`,
+};
 
 const getAuthHeaders = (headers?: Headers): any => {
   if (headers === undefined) {
@@ -23,28 +32,9 @@ export const getImages = () => {
   });
 };
 
-export const getAllImages = () => {
-  return axios
-    .get(apiPaths.GetAllImages, { responseType: "stream" })
-    .then((resp) => {
-      console.log(resp.data);
-      const blob = new Blob([resp.data], {
-        type: "application/zip",
-      });
-      const url = window.URL.createObjectURL(blob);
-
-      downloadURI(url, "images.zip");
-      // const link = document.createElement("a");
-      // link.href = url;
-      // link.setAttribute("download", "file.zip");
-      // document.body.appendChild(link);
-      // link.click();
-    });
-};
-
 export const getZippedImages = () => {
   return axios
-    .get(apiPaths.GetZippedImages, { responseType: "stream" })
+    .get(apiPaths.GetZippedImages, { responseType: "arraybuffer" })
     .then((resp) => {
       console.log(resp.data);
       const blob = new Blob([resp.data], {
@@ -53,11 +43,6 @@ export const getZippedImages = () => {
       const url = window.URL.createObjectURL(blob);
 
       downloadURI(url, "images.zip");
-      // const link = document.createElement("a");
-      // link.href = url;
-      // link.setAttribute("download", "file.zip");
-      // document.body.appendChild(link);
-      // link.click();
     });
 };
 
